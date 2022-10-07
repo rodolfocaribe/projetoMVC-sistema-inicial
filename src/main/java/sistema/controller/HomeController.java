@@ -52,6 +52,18 @@ public class HomeController {
         return "professor";
     }
 
+    @GetMapping("novoaluno")
+    public String exibeForm(Model modelo2) {
+        modelo2.addAttribute("aluno", new Aluno());
+        return "novoaluno";
+    }
+
+
+    @GetMapping("novoprofessor")
+    public String exibeFormProfessor(Model modelo3) {
+        modelo3.addAttribute("professor", new Professor());
+        return "novoprofessor";
+    }
 }
 
 
