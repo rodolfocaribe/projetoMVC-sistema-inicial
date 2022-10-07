@@ -22,6 +22,7 @@ public class SistemaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {;
+        //inicializando o banco h2 através de arquivo .sql
 //        db.update("INSERT INTO contatos(nome,telefone,endereco) VALUES (?,?,?)", "Edson Angoti Júnior", "123",
 //                "Rua 1");
 //        db.update("INSERT INTO contatos(nome,telefone,endereco) VALUES (?,?,?)", "José Joaquim", "123",
