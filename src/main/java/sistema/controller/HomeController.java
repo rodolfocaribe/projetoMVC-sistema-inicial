@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import sistema.model.Contato;
 import org.springframework.web.bind.annotation.PostMapping;
+import sistema.model.Professor;
 
 @Controller
 public class HomeController {
@@ -37,11 +38,30 @@ public class HomeController {
         model.addAttribute("contatos", listaDeContatos);
         return "contato";
     }
+    @GetMapping("/professores")
+    public String professores(Model model) {
+        List<Professor> listaDeProfessores = db.query(
+                "select * from professores",
+                (res, rowNum) -> {
+                    Professor professor = new Professor(
+                            res.getInt("id"),
+                            res.getString("nome"));
+                    return professor;
+                });
+        model.addAttribute("professores", listaDeProfessores
+        );
+        return "professores";
+    }
 
     @GetMapping("novo")
     public String exibeForm(Model model) {
         model.addAttribute("contato", new Contato());
         return "formulario";
+    }
+    @GetMapping("novoprofessor")
+    public String exibeFormProfessor(Model model) {
+        model.addAttribute("professor", new Professor());
+        return "formularioprofessor";
     }
 
     @PostMapping("novo")
@@ -53,6 +73,17 @@ public class HomeController {
 
         db.update("insert into contatos(endereco, telefone, nome) values (?, ?, ?)",
                 contato.getEndereco(), contato.getTelefone(), contato.getNome());
+        return "home";
+    }
+    //metodo post professor
+    @PostMapping("novoprofessor")
+    public String gravaDados(Professor professor) {
+        System.out.println("-----------------------");
+        System.out.println(professor.getId());
+        System.out.println(professor.getNome());
+
+        db.update("insert into professores (id, nome) values (?, ?)",
+                professor.getId(), professor.getNome());
         return "home";
     }
 
