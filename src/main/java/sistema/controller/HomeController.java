@@ -6,8 +6,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import sistema.model.Aluno;
 import sistema.model.Professor;
+
+import javax.swing.*;
 
 
 @Controller
@@ -57,13 +60,24 @@ public class HomeController {
         modelo2.addAttribute("aluno", new Aluno());
         return "novoaluno";
     }
+    @PostMapping("novoaluno")
+    public String gravaDados(Aluno aluno) {
+        db.update("insert into alunos (nome, telefone, endereco) values (?,?,?)",
+                aluno.getNome(), aluno.getTelefone(), aluno.getEndereco());
+        return "home";
+    }
 
 
     @GetMapping("novoprofessor")
-    public String exibeFormProfessor(Model modelo3) {
-        modelo3.addAttribute("professor", new Professor());
+    public String exibeFormProfessor(Model modelo4) {
+        modelo4.addAttribute("professor", new Professor());
         return "novoprofessor";
     }
+    @PostMapping("novoprofessor")
+    public String gravaDadosProfessor(Professor professor) {
+        db.update("insert into professores (nome) values (?)",
+                professor.getNome());
+        return "home";
+    }
 }
-
 
