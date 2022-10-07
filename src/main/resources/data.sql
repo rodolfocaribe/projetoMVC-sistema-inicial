@@ -1,6 +1,6 @@
 create table if not exists alunos
 (
-    id       int auto_increment,
+    id int auto_increment,
     nome     varchar(50),
     telefone varchar(20),
     endereco varchar(50),

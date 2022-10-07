@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import sistema.model.Aluno;
 import sistema.model.Professor;
 
+import javax.print.attribute.standard.PresentationDirection;
 import javax.swing.*;
 
 
@@ -64,7 +65,7 @@ public class HomeController {
     public String gravaDados(Aluno aluno) {
         db.update("insert into alunos (nome, telefone, endereco) values (?,?,?)",
                 aluno.getNome(), aluno.getTelefone(), aluno.getEndereco());
-        return "home";
+        return "redirect:/alunos";
     }
 
 
@@ -77,7 +78,7 @@ public class HomeController {
     public String gravaDadosProfessor(Professor professor) {
         db.update("insert into professores (nome) values (?)",
                 professor.getNome());
-        return "home";
+        return "redirect:/professores";
     }
 }
 
