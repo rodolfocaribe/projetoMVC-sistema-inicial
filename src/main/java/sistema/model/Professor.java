@@ -3,7 +3,6 @@ package sistema.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 public class Professor {
@@ -12,6 +11,6 @@ public class Professor {
 
     public Professor(int id, String nome) {
         this.id = id;
-        this.nome = this.nome;
+        this.nome = nome;
     }
 }

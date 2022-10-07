@@ -12,11 +12,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="contato : ${contatos}">
-            <th scope="row" th:text="${contato.id}"></th>
-            <td th:text="${contato.nome}"></td>
-            <td th:text="${contato.telefone}"></td>
-            <td th:text="${contato.endereco}"></td>
+        <tr th:each="aluno : ${alunos}">
+            <th scope="row" th:text="${aluno.id}"></th>
+            <td th:text="${aluno.nome}"></td>
+            <td th:text="${aluno.telefone}"></td>
+            <td th:text="${aluno.endereco}"></td>
         </tr>
         </tbody>
     </table>

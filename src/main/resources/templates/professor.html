@@ -10,10 +10,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="professor : ${professor}">
+        <tr th:each="professor : ${professores}">
             <th scope="row" th:text="${professor.id}"></th>
             <td th:text="${professor.nome}"></td>
-        </tr>
         </tbody>
     </table>
 </div>

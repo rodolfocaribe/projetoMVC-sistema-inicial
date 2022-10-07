@@ -6,9 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import sistema.model.Contato;
-
-import java.util.List;
+import sistema.model.Aluno;
+import sistema.model.Professor;
 
 @SpringBootApplication
 public class SistemaApplication implements CommandLineRunner {
@@ -21,14 +20,16 @@ public class SistemaApplication implements CommandLineRunner {
     JdbcTemplate db;
 
     @Override
-    public void run(String... args) throws Exception {;
-        //inicializando o banco h2 através de arquivo .sql
-//        db.update("INSERT INTO contatos(nome,telefone,endereco) VALUES (?,?,?)", "Edson Angoti Júnior", "123",
-//                "Rua 1");
-//        db.update("INSERT INTO contatos(nome,telefone,endereco) VALUES (?,?,?)", "José Joaquim", "123",
-//                "Rua 2");
-//        db.update("INSERT INTO contatos(nome,telefone,endereco) VALUES (?,?,?)", "Maria Carolina", "123",
-//                "Rua 3");
+    public void run(String... args) throws Exception {
+        db.update("INSERT INTO alunos(nome,telefone,endereco) VALUES (?,?,?)", "Rodolfo de Tal", "123",
+                "Rua 1");
+        db.update("INSERT INTO alunos(nome,telefone,endereco) VALUES (?,?,?)", "Juliana Fulana", "123",
+                "Rua 2");
+        db.update("INSERT INTO alunos(nome,telefone,endereco) VALUES (?,?,?)", "João Botão", "123",
+                "Rua 3");
+        db.update("INSERT INTO professores(nome) VALUES (?)", "Professor Pardal");
+        db.update("INSERT INTO professores(nome) VALUES (?)", "Professor Girafales");
+        db.update("INSERT INTO professores(nome) VALUES (?)", "Professora Florinda");
     }
 
 }
