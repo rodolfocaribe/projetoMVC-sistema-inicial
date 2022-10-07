@@ -82,8 +82,8 @@ public class HomeController {
         System.out.println(professor.getId());
         System.out.println(professor.getNome());
 
-        db.update("insert into professores (id, nome) values (?, ?)",
-                professor.getId(), professor.getNome());
+        db.update("insert into professores (nome) values (?)",
+                professor.getNome());
         return "home";
     }
 
