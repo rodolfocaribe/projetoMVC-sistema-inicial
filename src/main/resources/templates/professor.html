@@ -13,6 +13,10 @@
         <tr th:each="professor : ${professores}">
             <th scope="row" th:text="${professor.id}"></th>
             <td th:text="${professor.nome}"></td>
+            <td>
+            <a th:href="@{/excluir-professor(id=${professor.id})}">excluir</a>
+            <a th:href="@{/editar-professor(id=${professor.id})}">editar</a>
+            </td>
         </tbody>
     </table>
 </div>

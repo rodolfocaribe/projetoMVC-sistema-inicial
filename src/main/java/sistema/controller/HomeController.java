@@ -82,7 +82,7 @@ public class HomeController {
         return "redirect:/professores";
     }
     @GetMapping ("excluir-aluno")
-    public String apagarContato(@RequestParam(value = "id", required = true) Integer cod) {
+    public String apagarAluno(@RequestParam(value = "id", required = true) Integer cod) {
         db.update("delete from alunos where id=?", cod);
         return "redirect:/alunos";
     }
@@ -111,6 +111,35 @@ public class HomeController {
                 aluno.getEndereco(),
                 aluno.getId());
         return "redirect:/alunos";
+    }
+
+    @GetMapping ("excluir-professor")
+    public String apagarProfessor(@RequestParam(value = "id", required = true) Integer cod) {
+        db.update("delete from professores where id=?", cod);
+        return "redirect:/professores";
+    }
+
+    @GetMapping ("editar-professor")
+    public String exibeFormAlteracaoProfessor(@RequestParam (value = "id", required = true) Integer cod, Model model){
+        Professor professor = db.queryForObject(
+                "select * from professores where id = ?",
+                (rs, rowNum) -> {
+                    Professor edited = new Professor();
+                    edited.setId(rs.getInt("id"));
+                    edited.setNome(rs.getString("nome"));
+                    return edited;
+                }, cod);
+        model.addAttribute("professoreditado", professor );
+        return "editaprofessor";
+    }
+
+    @PostMapping("gravaprofessoreditado")
+    public String gravaProfessorEditado(Professor professor) {
+        db.update(
+                "update professores set nome=? where id = ?",
+                professor.getNome(),
+                professor.getId());
+        return "redirect:/professores";
     }
 }
 
